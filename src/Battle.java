@@ -1,6 +1,5 @@
-public class Battle {
+public class Battle extends EventSet{
 	private Player[] Ps = new Pĺayer[2];
-	private EventSet es = new EventSet();
 	
 	Battle() {
 		
