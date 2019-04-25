@@ -1,13 +1,8 @@
 abstract public class Event {
-	void run() {}
-	private long evtTime;
 	private int priority;
 	
-	public Event(long eventTime) {
-		evtTime = eventTime;
-	}
-	public boolean ready() {
-		return System.currentTimeMillis() >= evtTime;
+	public Event(int priority) {
+		this.priority =  priority;
 	}
 	public int getPriority() {
 		return priority;
