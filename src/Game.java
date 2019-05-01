@@ -2,49 +2,38 @@ public class Game{
 	private class Battle extends EventSet{
 		
 		private Player[] Ps ;
+
+		private class Move extends Event{
+			private int priority;
+			
+			public Move(String name, String description, int priority) {
+				suoer(name,description);
+				this.priority =  priority;
+			}
+			public int getPriority() {
+				return priority;
+			}
+		}
 		
 		private class attack extends Event {
-			attack(){
-				super(0);
-			}
 			public void action(){
-				
-			}
-			public String description() {
-				return "Yay";
+				n = Ps[i].atual.attack[j].getDano();
+				Ps[1-i].atual.damage(n);
 			}
 		}
 		private class changePokemon extends Event {
-			changePokemon(){
-				super(0);
-			}
 			public void action(){
-				
-			}
-			public String description() {
-				return "Yay";
+				Ps[i].chgPokemon(n);
 			}
 		}
 		private class flee extends Event {
-			flee(){
-				super(0);
-			}
 			public void action(){
-				
-			}
-			public String description() {
-				return "Yay";
+				endBattle(Ps[i].name+" flew. Battle ended. "+Ps[1-i].name+" wins!");
 			}
 		}
 		private class useItem extends Event {
-			useItem(){
-				super(0);
-			}
 			public void action(){
-				
-			}
-			public String description() {
-				return "Yay";
+				Ps[1].atual.damage(-Potion.mana());
 			}
 		}
 		
@@ -57,7 +46,9 @@ public class Game{
 				E[0] = Ps[0].decide();
 				E[1] = Ps[1].decide();
 				
-				int i = (E[1] > E[0])?E[1]:E[0];
+				int i = (E[1] > E[0])?1:0;
+				E[i].happen();
+				E[1-i].happen();
 			}
 		}
 		

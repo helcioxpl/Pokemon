@@ -1,13 +1,13 @@
 abstract public class Event {
-	private int priority;
+	private static String name;
+	private static String description;
 	
-	public Event(int priority) {
-		this.priority =  priority;
+	public Event(String name, String description) {
+		this.name =  name;
+		this.description =  description;
 	}
-	public int getPriority() {
-		return priority;
-	}
-	
 	abstract public void action();
-	abstract public String description();
+	abstract public String description(){
+		return this.description;
+	}
 }

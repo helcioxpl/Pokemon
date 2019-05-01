@@ -6,6 +6,9 @@ public class Player {
 	Player(){
 	}
 	
+	public void chgPokemon(int n){
+		this.atual = n;
+	}
 	public int decide() {
 		return (int) Math.floor(Math.random()*4);
 	}

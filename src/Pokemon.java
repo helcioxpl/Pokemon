@@ -19,9 +19,10 @@ public class Pokemon {
 	
 	attack[] ataques = new attack[4];
 	Pokemon(int Hp, attack[] attacks){
-		this.Hp[0] = this.Hp[0] = Hp;
+		this.Hp[0] = this.Hp[1] = Hp;
 		ataques = attacks;
 	}
+
 	public attack attack(int i) {
 		return ataques[i];
 	}
