@@ -17,13 +17,15 @@ public class Game{
 		
 		private class attack extends Event {
 			public void action(){
-				n = Ps[i].atual.attack[j].getDano();
-				Ps[1-i].atual.damage(n);
+				n = Ps[i].atual.attack(decide(4)).getDano();
+				if (!Ps[1-i].atual.damage(n)) {
+					Ps[1-i].atual++;
+				}				
 			}
 		}
 		private class changePokemon extends Event {
 			public void action(){
-				Ps[i].chgPokemon(n);
+				Ps[i].chgPokemon();
 			}
 		}
 		private class flee extends Event {
@@ -46,7 +48,7 @@ public class Game{
 				E[0] = Ps[0].decide();
 				E[1] = Ps[1].decide();
 				
-				int i = (E[1] > E[0])?1:0;
+				int j = (E[1] > E[0])?1:0;
 				E[i].happen();
 				E[1-i].happen();
 			}

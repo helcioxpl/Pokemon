@@ -27,7 +27,8 @@ public class Pokemon {
 		return ataques[i];
 	}
 	
-	public void damage(int d) {
-		Hp[1]-=d;
+	public int damage(int d) {
+		Hp[1] -= (Hp[1]-d > 0)?d:Hp[1];
+		return Hp[1];
 	}
 }
