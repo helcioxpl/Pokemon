@@ -15,42 +15,51 @@ public class Game{
 			}
 		}
 		
-		private class attack extends Event {
+		private class attack extends Move {
 			public void action(){
 				n = Ps[i].atual.attack(decide(4)).getDano();
-				if (!Ps[1-i].atual.damage(n)) {
-					Ps[1-i].atual++;
-				}				
+				if (!Ps[1-i].atual.damage(n)) 
+					if(!Ps[1-i].nextPokemon()) this.add(end(1-i,"has no more Pokemon"));
 			}
 		}
-		private class changePokemon extends Event {
+		private class changePokemon extends Move {
 			public void action(){
 				Ps[i].chgPokemon();
 			}
 		}
-		private class flee extends Event {
+		private class flee extends Move {
 			public void action(){
-				endBattle(Ps[i].name+" flew. Battle ended. "+Ps[1-i].name+" wins!");
+				this.add(end(i,"flew"))
 			}
 		}
-		private class useItem extends Event {
+		private class useItem extends Move {
 			public void action(){
-				Ps[1].atual.damage(-Potion.mana());
+				Ps[1].atual.heal(Potion.mana());
 			}
 		}
-		
+		private class end extends Event{
+			public end(int p, String reason) {
+				super("Battle end",Ps[p].name+" "+reason+". Battle ended. "+Ps[1-p].name+" wins!");
+			}
+		}
+		public void end(){
+		}
+		public add(){
+			return true;
+		}
+
 		public Battle(Player[] Ps) {
 			this.Ps = Ps;
 		}
-		public  void run() {
+		public void run() {
 			int[] E = new int[2];
 			while (true){ //rodadas
-				E[0] = Ps[0].decide();
-				E[1] = Ps[1].decide();
+				E[0] = Ps[0].decide(4);
+				E[1] = Ps[1].decide(4);
 				
-				int j = (E[1] > E[0])?1:0;
-				E[i].happen();
-				E[1-i].happen();
+				int i = (E[1] > E[0])?1:0;
+				if(this.add(E[i])) return;
+				if(this.add(E[1-i])) return;
 			}
 		}
 		

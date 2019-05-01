@@ -28,7 +28,11 @@ public class Pokemon {
 	}
 	
 	public int damage(int d) {
-		Hp[1] -= (Hp[1]-d > 0)?d:Hp[1];
+		Hp[1] = (Hp[1]-d > 0)?Hp[1]-d:0;
+		return Hp[1];
+	}
+	public int heal(int h) {
+		Hp[1] = (Hp[1]+h > Hp[0])?Hp[0]:Hp[1]+h;
 		return Hp[1];
 	}
 }
