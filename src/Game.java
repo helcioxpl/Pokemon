@@ -1,6 +1,6 @@
 public class Game{
 	private class Battle extends EventSet{
-		
+		int i;
 		private Player[] Ps ;
 
 		private class Move extends Event{
@@ -44,7 +44,7 @@ public class Game{
 		}
 		public void end(){
 		}
-		public add(){
+		public add(Event e){
 			return true;
 		}
 
@@ -57,7 +57,7 @@ public class Game{
 				E[0] = Ps[0].decide(4);
 				E[1] = Ps[1].decide(4);
 				
-				int i = (E[1] > E[0])?1:0;
+				i = (E[1] > E[0])?1:0;
 				if(this.add(E[i])) return;
 				if(this.add(E[1-i])) return;
 			}
