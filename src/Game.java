@@ -17,8 +17,8 @@ public class Game{
 		
 		private class attack extends Move {
 			public void action(){
-				n = Ps[i].atual.attack(decide(4)).getDano();
-				if (!Ps[1-i].atual.damage(n)) 
+				int n = Ps[i].getAtual().attack(Ps[i].decide(4)).getDano();
+				if (!Ps[1-i].getAtual().damage(n)) 
 					if(!Ps[1-i].nextPokemon()) this.add(end(1-i,"has no more Pokemon"));
 			}
 		}
@@ -34,7 +34,7 @@ public class Game{
 		}
 		private class useItem extends Move {
 			public void action(){
-				Ps[1].atual.heal(Potion.mana());
+				Ps[1].getAtual().heal(Potion.mana());
 			}
 		}
 		private class end extends Event{
