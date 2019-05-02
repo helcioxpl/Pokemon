@@ -11,41 +11,26 @@ public class Mapa extends Player {
 		this.y = y;
 	}
 	public void imprimirMapa(int posicaoX, int posicaoY) {
-		int i = 0;
 		int j = 0;
-		while (i < x) {
-			while (j < y) {
+		for(int i = 0;i < x;i++) {
+			for (j = 0;j < y;j++)
 				System.out.print("--");
-				j++;
-			}
 			System.out.println("");
-			j = 0;
-			while (j < y) {
+			for(j = 0;j < y;j++)
 				System.out.print((posicaoX == i && posicaoY == j)?"|P":("|"+mapa[i][j]));
-				j++;
-			}
 			System.out.println("|");
 			j = 0;
 			i++;
 		}
-		while (j < y) {
+		for (j = 0;j < y;j++)
 			System.out.print("- ");
-			j++;
-		}
-		
 	}
 	private void playerMoves(char direcao) {// w = cima, s = abaixo, a = esquerda e d =direita
-		if (direcao == 'w') {
-			posicaoXPlayer = posicaoXPlayer ++;
-		}
-		if (direcao == 's') {
-			
-		}
-		if (direcao == 'a') {
-			
-		}
-		if (direcao == 'd') {
-			
+		switch(direção) {
+			case 'w': posicaoYPlayer--;
+			case 's': posicaoYPlayer++;
+			case 'a': posicaoXPlayer--;
+			case 'd': posicaoXPlayer++;
 		}
 	}
 	public static void main (String[] args) {
