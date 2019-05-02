@@ -23,8 +23,8 @@ public class Pokemon {
 		this.Hp[0] = this.Hp[1] = Hp;
 		//ataques = attacks;
 	}
-	public void addAttack(String n, int d) {
-		ataques[0] = new attack(n,d);		
+	public void addAttack(int n, String s, int d) {
+		ataques[n] = new attack(s,d);		
 	}
 	
 	public String getName() {

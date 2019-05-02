@@ -4,14 +4,14 @@ public class Battle extends EventSet{
 	private Item Potion = new Item();
 
 	class attack extends Event {
-		int n;
+		Pokemon.attack n;
 		public attack() {
 			super("Attack","");
-			n = Ps[i].getAtual().attack(Ps[i].decide(4)).getDano();
-			this.description = Ps[i].getName()+"'s "+Ps[i].getAtual().getName()+" used his "+Ps[i].getAtual().attack(n);
+			n = Ps[i].getAtual().attack(Ps[i].decide(4));
+			this.description = Ps[i].getName()+"'s "+Ps[i].getAtual().getName()+" used his "+n.getNome();
 		}
 		public void action() throws end{
-			if (Ps[1-i].getAtual().damage(n) == 0) 
+			if (Ps[1-i].getAtual().damage(n.getDano()) == 0) 
 				if(!Ps[1-i].nextPokemon()) throw new end(1-i,"has no more Pokemon");
 		}
 	}
@@ -47,8 +47,6 @@ public class Battle extends EventSet{
 			return;
 		}
 	}
-	public void end(){
-	}
 	public boolean add(Event e){
 		return true;
 	}
@@ -61,7 +59,8 @@ public class Battle extends EventSet{
 		Class<?>[] Evs = { attack.class, changePokemon.class, useItem.class, flee.class, end.class};
 		int[] E = new int[2];
 		while (true){ //rodadas
-			E[0] = Ps[0].decide(4);
+			E[0] = Ps[0].decide(120);
+			E[0] = (E[0] > 4)?0:E[0];
 			E[1] = Ps[1].decide(4);
 			
 			i = (E[1] > E[0])?1:0;
@@ -69,6 +68,7 @@ public class Battle extends EventSet{
 				//this.add((Event) new Evs[E[i]]());
 				((Event) Evs[E[i]].getConstructors()[0].newInstance(this)).happen();
 			} catch( java.lang.reflect.InvocationTargetException t) {
+				System.out.println("Invocation");
 				if(t.getCause().getClass() == Event.class) {
 					try {((Event) t.getCause()).happen();}
 					catch(Event e) {
@@ -79,15 +79,18 @@ public class Battle extends EventSet{
 				else{
 					System.out.println("Erro: "+Evs[E[i]]);
 					System.out.println("Cause: "+t.getCause());
-					System.out.println("Erro: "+t.getCause().getMessage());
 				}
 			}catch(Event e2) {
-				System.out.println("Erro: "+e2.getMessage());
-				System.out.println("Event");
+				try{
+					e2.happen();
+				} catch(Event e) {
+					return;
+				}
 				return;
 			} catch(Exception e) {
 				System.out.println("Erro: "+e.getClass());
 				System.out.println("Erro: "+e.getMessage());
+				e.printStackTrace(System.out);
 				System.out.println("Erro: "+Evs[E[i]]);
 				return;
 			}
@@ -96,8 +99,13 @@ public class Battle extends EventSet{
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
 		Pokemon p = new Pokemon("Pikachu",100);
-		p.addAttack("Raio de trovão",30);
+		p.addAttack(0,"Raio do trovão",30);
+		p.addAttack(1,"Raio do trovão",30);
+		p.addAttack(2,"Raio do trovão",30);
+		p.addAttack(3,"Raio do trovão",30);
+		Ps[1].setAtual(5);
 		Ps[1].addPokemon(p);
+		Ps[0].setAtual(5);
 		Ps[0].addPokemon(p);
 
 		Battle b = new Battle(Ps);

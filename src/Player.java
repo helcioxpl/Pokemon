@@ -19,18 +19,23 @@ public class Player {
 		return name;
 	}
 	
-	public void chgPokemon(){
+	public boolean chgPokemon(){
 		Pokemon aux;
+		if ((6 - atual - 1) <= 0) return false;
 		int n = decide(6 - atual - 1) + atual + 1;
 		aux = p[n];
 		p[n] = p[atual];
 		p[atual] = aux;
+		return true;
 	}
 	public int decide(int x) {
 		return r.nextInt(x);
 	}
 	public Pokemon getAtual() {
 		return p[atual];
+	}
+	public void setAtual(int n) {
+		atual = n;
 	}
 	public boolean nextPokemon() {
 		atual++;
