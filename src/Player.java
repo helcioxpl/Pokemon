@@ -5,7 +5,7 @@ public class Player {
 	Pokemon[] p = new Pokemon[6];
 	Item[] pt = new Item[5];
 	protected int atual = 0;
-	Random r = new Random();
+	static Random r = new Random();
 	
 	public Player(String nome){
 		name = nome;
