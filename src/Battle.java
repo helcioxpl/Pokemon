@@ -1,4 +1,4 @@
-public class Battle extends EventSet{
+public class Battle extends Event{
 	int i;
 	private Player[] Ps;
 	private Item Potion = new Item();
@@ -54,9 +54,10 @@ public class Battle extends EventSet{
 	}
 
 	public Battle(Player[] Ps) {
+		super("Battle",Ps[0].getName()+" vs. "+Ps[1].getName());
 		this.Ps = Ps;
 	}
-	public void run() {//throws Event{
+	public void action() {//throws Event{
 		Class<?>[] Evs = { attack.class, changePokemon.class, useItem.class, flee.class, end.class};
 		int[] E = new int[2];
 		while (true){ //rodadas
@@ -99,7 +100,12 @@ public class Battle extends EventSet{
 		Ps[0].addPokemon(p);
 
 		Battle b = new Battle(Ps);
-		b.run();
+		try{
+			b.happen();
+		} catch (Event e){
+			return;
+		}
+		//b.action();
 	}
 }
 
