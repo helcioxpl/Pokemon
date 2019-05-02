@@ -22,7 +22,10 @@ public class Pokemon {
 		this.Hp[0] = this.Hp[1] = Hp;
 		ataques = attacks;
 	}
-
+	
+	public String getName() {
+		return nome;
+	}
 	public attack attack(int i) {
 		return ataques[i];
 	}

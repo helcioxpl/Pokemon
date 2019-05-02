@@ -1,6 +1,7 @@
 public class Player {
 	private String name;
 	Pokemon[] p = new Pokemon[6];
+	Item[] pt = new Item[5];
 	private int atual = 0;
 	
 	public Player(String nome, Pokemon[] listaPokemons){
