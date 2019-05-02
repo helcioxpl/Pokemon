@@ -34,6 +34,20 @@ public class Mapa extends Player {
 		}
 		
 	}
+	private void playerMoves(char direcao) {// w = cima, s = abaixo, a = esquerda e d =direita
+		if (direcao == 'w') {
+			posicaoXPlayer = posicaoXPlayer ++;
+		}
+		if (direcao == 's') {
+			
+		}
+		if (direcao == 'a') {
+			
+		}
+		if (direcao == 'd') {
+			
+		}
+	}
 	public static void main (String[] args) {
 		Random gerador = new Random();
 		int[] dim = {gerador.nextInt(7)+5,gerador.nextInt(5)+15};
