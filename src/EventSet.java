@@ -3,9 +3,10 @@ public class EventSet{
 	private int index = 0;
 	private int next = 0;
 	
-	public void add(Event e) {
-		if(index >= events.length) return; // (In real life, throw exception)
+	public boolean add(Event e) {
+		if(index >= events.length) return false; // (In real life, throw exception)
 		events[index++] = e;
+		return true;
 	}
 	
 	public Event getNext() {

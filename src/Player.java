@@ -8,6 +8,10 @@ public class Player {
 		p = listaPokemons;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public void chgPokemon(){
 		Pokemon aux;
 		int n = decide(6 - atual - 1) + atual + 1;

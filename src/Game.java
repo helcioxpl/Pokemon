@@ -3,48 +3,36 @@ public class Game{
 		int i;
 		private Player[] Ps ;
 
-		private class Move extends Event{
-			private int priority;
-			
-			public Move(String name, String description, int priority) {
-				suoer(name,description);
-				this.priority =  priority;
-			}
-			public int getPriority() {
-				return priority;
-			}
-		}
-		
-		private class attack extends Move {
-			public void action(){
+		private class attack extends Event {
+			public void action() throws end{
 				int n = Ps[i].getAtual().attack(Ps[i].decide(4)).getDano();
-				if (!Ps[1-i].getAtual().damage(n)) 
-					if(!Ps[1-i].nextPokemon()) this.add(end(1-i,"has no more Pokemon"));
+				if (Ps[1-i].getAtual().damage(n) == 0) 
+					if(!Ps[1-i].nextPokemon()) throw new end(1-i,"has no more Pokemon");
 			}
 		}
-		private class changePokemon extends Move {
+		private class changePokemon extends Event {
 			public void action(){
 				Ps[i].chgPokemon();
 			}
 		}
-		private class flee extends Move {
-			public void action(){
-				this.add(end(i,"flew"));
+		private class flee extends Event {
+			public void action() throws end{
+				throw new end(i,"flew");
 			}
 		}
-		private class useItem extends Move {
+		private class useItem extends Event {
 			public void action(){
-				Ps[1].getAtual().heal(Potion.mana());
+				Ps[i].getAtual().heal(Potion.mana());
 			}
 		}
 		private class end extends Event{
 			public end(int p, String reason) {
-				super("Battle end",Ps[p].name+" "+reason+". Battle ended. "+Ps[1-p].name+" wins!");
+				super("Battle end",Ps[p].getName()+" "+reason+". Battle ended. "+Ps[1-p].name+" wins!");
 			}
 		}
 		public void end(){
 		}
-		public add(Event e){
+		public boolean add(Event e){
 			return true;
 		}
 
@@ -62,14 +50,20 @@ public class Game{
 				//throw new
 				Evs[E[i]].action();
 				System.out.println(Evs[E[i]].description());
-				//if(this.add(E[i])) return;
-				//if(this.add(E[1-i])) return;
+				try {
+					this.add(Evs[E[i]]);
+					this.add(Evs[E[i]]);
+				} catch(end e) {
+					e.action();
+					System.out.println(e.description());
+					return;
+				}
 			}
 		}
 		
 	}
 	public static void main (String[] args) {
-		private Player[] Ps = {new Pĺayer(),new Player()};
+		Player[] Ps = {new Pĺayer("A"),new Player("B")};
 		Battle b = new Battle(Ps);
 		b.run();
 	}

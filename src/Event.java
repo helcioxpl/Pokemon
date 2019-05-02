@@ -1,3 +1,5 @@
+import Game.Battle.end;
+
 abstract public class Event extends Throwable {
 	private static String name;
 	private static String description;
@@ -6,8 +8,8 @@ abstract public class Event extends Throwable {
 		this.name =  name;
 		this.description =  description;
 	}
-	abstract public void action();
-	abstract public String description(){
+	abstract public void action() throws Event;
+	public String description(){
 		return this.description;
 	}
 }
