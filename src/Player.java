@@ -1,14 +1,17 @@
+import java.util.Random;
+
 public class Player {
 	private String name;
 	Pokemon[] p = new Pokemon[6];
 	Item[] pt = new Item[5];
 	protected int atual = 0;
+	Random r = new Random();
 	
 	public Player(String nome){
 		name = nome;
 	}
 	
-	private void addPokemon(Pokemon p) {
+	public void addPokemon(Pokemon p) {
 		this.p[atual] = p;
 	}
 	
@@ -24,7 +27,7 @@ public class Player {
 		p[atual] = aux;
 	}
 	public int decide(int x) {
-		return (int) Math.floor(Math.random()*(x));
+		return r.nextInt(x);
 	}
 	public Pokemon getAtual() {
 		return p[atual];

@@ -18,10 +18,13 @@ public class Pokemon {
 	}
 	
 	attack[] ataques = new attack[4];
-	Pokemon(String nome, int Hp, attack[] attacks){
+	Pokemon(String nome, int Hp) {//, attack[] attacks){
 		this.nome = nome;
 		this.Hp[0] = this.Hp[1] = Hp;
-		ataques = attacks;
+		//ataques = attacks;
+	}
+	public void addAttack(String n, int d) {
+		ataques[0] = new attack(n,d);		
 	}
 	
 	public String getName() {
