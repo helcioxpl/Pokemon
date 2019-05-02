@@ -18,7 +18,8 @@ public class Pokemon {
 	}
 	
 	attack[] ataques = new attack[4];
-	Pokemon(int Hp, attack[] attacks){
+	Pokemon(String nome, int Hp, attack[] attacks){
+		this.nome = nome;
 		this.Hp[0] = this.Hp[1] = Hp;
 		ataques = attacks;
 	}

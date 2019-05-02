@@ -2,11 +2,14 @@ public class Player {
 	private String name;
 	Pokemon[] p = new Pokemon[6];
 	Item[] pt = new Item[5];
-	private int atual = 0;
+	protected int atual = 0;
 	
-	public Player(String nome, Pokemon[] listaPokemons){
+	public Player(String nome){
 		name = nome;
-		p = listaPokemons;
+	}
+	
+	private void addPokemon(Pokemon p) {
+		this.p[atual] = p;
 	}
 	
 	public String getName() {
