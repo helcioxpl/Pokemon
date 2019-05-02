@@ -19,8 +19,6 @@ public class Mapa extends Player {
 			for(j = 0;j < y;j++)
 				System.out.print((posicaoX == i && posicaoY == j)?"|P":("|"+mapa[i][j]));
 			System.out.println("|");
-			j = 0;
-			i++;
 		}
 		for (j = 0;j < y;j++)
 			System.out.print("- ");
