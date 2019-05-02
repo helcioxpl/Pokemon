@@ -51,15 +51,19 @@ public class Game{
 		public Battle(Player[] Ps) {
 			this.Ps = Ps;
 		}
-		public void run() {
+		public void run() {//throws Event{
+			Class[] Evs = { attack.class, changePokemon.class, useItem.class, flee.class, end.class};
 			int[] E = new int[2];
 			while (true){ //rodadas
 				E[0] = Ps[0].decide(4);
 				E[1] = Ps[1].decide(4);
 				
 				i = (E[1] > E[0])?1:0;
-				if(this.add(E[i])) return;
-				if(this.add(E[1-i])) return;
+				//throw new
+				Evs[E[i]].action();
+				System.out.println(Evs[E[i]].description());
+				//if(this.add(E[i])) return;
+				//if(this.add(E[1-i])) return;
 			}
 		}
 		

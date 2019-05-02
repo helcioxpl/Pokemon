@@ -1,4 +1,4 @@
-abstract public class Event {
+abstract public class Event extends Throwable {
 	private static String name;
 	private static String description;
 	
