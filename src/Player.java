@@ -3,7 +3,9 @@ public class Player {
 	Pokemon[] p = new Pokemon[6];
 	private int atual = 0;
 	
-	public Player(){
+	public Player(String nome, Pokemon[] listaPokemons){
+		name = nome;
+		p = listaPokemons;
 	}
 	
 	public void chgPokemon(){
@@ -16,8 +18,8 @@ public class Player {
 	public int decide(int x) {
 		return (int) Math.floor(Math.random()*(x));
 	}
-	public int getAtual() {
-		return atual;
+	public Pokemon getAtual() {
+		return p[atual];
 	}
 	public boolean nextPokemon() {
 		atual++;

@@ -29,7 +29,7 @@ public class Game{
 		}
 		private class flee extends Move {
 			public void action(){
-				this.add(end(i,"flew"))
+				this.add(end(i,"flew"));
 			}
 		}
 		private class useItem extends Move {
@@ -65,7 +65,7 @@ public class Game{
 		
 	}
 	public static void main (String[] args) {
-		private Player[] Ps = [new Pĺayer(),new Player()];
+		private Player[] Ps = {new Pĺayer(),new Player()};
 		Battle b = new Battle(Ps);
 		b.run();
 	}
