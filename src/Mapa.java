@@ -4,6 +4,8 @@ public class Mapa extends Player {
 	private int x;
 	private int y;
 	static char[][] mapa;// . quando gramado, ' ' quando concreto e P a posicao do player
+	private int posicaoXPlayer;
+	private int posicaoYPlayer;
 	public Mapa(int x, int y, char[][] concretoGramado) {
 		super("Pokemon selvagem");
 		mapa = concretoGramado;
@@ -24,7 +26,7 @@ public class Mapa extends Player {
 			System.out.print("- ");
 	}
 	private void playerMoves(char direcao) {// w = cima, s = abaixo, a = esquerda e d =direita
-		switch(direção) {
+		switch(direcao) {
 			case 'w': posicaoYPlayer--;
 			case 's': posicaoYPlayer++;
 			case 'a': posicaoXPlayer--;
@@ -42,9 +44,9 @@ public class Mapa extends Player {
 			}
 		}
 		Mapa mapaTeste = new Mapa(dim[0], dim[1], teste);
-		int posicaoXPlayer = gerador.nextInt(mapaTeste.x);
-		int posicaoYPlayer = gerador.nextInt(mapaTeste.y);
-		mapaTeste.imprimirMapa(posicaoXPlayer, posicaoYPlayer);
+		mapaTeste.posicaoXPlayer = gerador.nextInt(mapaTeste.x);
+		mapaTeste.posicaoYPlayer = gerador.nextInt(mapaTeste.y);
+		mapaTeste.imprimirMapa(mapaTeste.posicaoXPlayer, mapaTeste.posicaoYPlayer);
 		
 	}
 
