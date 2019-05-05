@@ -100,12 +100,12 @@ public class Battle extends Event{
 		Ps[0].addPokemon(p);
 
 		Battle b = new Battle(Ps);
-		try{
+		/*try{
 			b.happen();
 		} catch (Event e){
 			return;
-		}
-		//b.action();
+		}*/
+		b.action();
 	}
 }
 
