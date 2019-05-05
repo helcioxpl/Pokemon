@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -32,6 +33,16 @@ public class Mapa extends Player {
 		}
 		return false;
 	}
+	private static char movimentoAleatorio() {
+		int i = decide(4);
+		switch(i) {
+			case 0: return 'w';
+			case 1: return 's';
+			case 2: return 'a';
+			case 3: return 'd';
+		}
+		return'q';
+	}
 	private void playerMoves(char direcao) {// w = cima, s = abaixo, a = esquerda e d =direita
 		switch(direcao) {
 			case 'w': 
@@ -49,6 +60,7 @@ public class Mapa extends Player {
 		}
 	}
 	private boolean possibleMovement(char movement) {
+		
 		if(movement == 'w') {
 			if(posicaoXPlayer == x - 1) {
 				return false;
@@ -91,7 +103,6 @@ public class Mapa extends Player {
 	}
 	public static void main (String[] args) {
 		Random gerador = new Random();
-		Scanner ler = new Scanner(System.in);
 		char movement;
 		boolean batalhaJaOcorreu = false;
 		Player[] Ps = {new Player("A"),new Player("Pokemon Selvagem")};
@@ -116,16 +127,15 @@ public class Mapa extends Player {
 				}
 			}
 			else {
-				System.out.println("Digite 'w' = cima , 's' = abaixo , 'a' = esquerda , 'd' = direita ");
-				movement = ler.next().charAt(0);
+				movement = movimentoAleatorio();
 				if(mapaTeste.possibleMovement(movement)) {
 					mapaTeste.playerMoves(movement);
 				}
 				else {
 					while(!mapaTeste.possibleMovement(movement)) {
 						System.out.println("Movimento invalido");
-						System.out.println("Digite 'w' = cima , 's' = abaixo , 'a' = esquerda , 'd' = direita ");
-						movement = ler.next().charAt(0);
+						movement = movimentoAleatorio();
+				
 					}
 				}
 				

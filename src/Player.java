@@ -28,7 +28,7 @@ public class Player {
 		p[atual] = aux;
 		return true;
 	}
-	public int decide(int x) {
+	public static int decide(int x) {
 		return r.nextInt(x);
 	}
 	public Pokemon getAtual() {
