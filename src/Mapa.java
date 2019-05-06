@@ -46,23 +46,31 @@ public class Mapa extends Player {
 	private void playerMoves(char direcao) {// w = cima, s = abaixo, a = esquerda e d =direita
 		switch(direcao) {
 			case 'w': 
-				posicaoYPlayer--;
+				posicaoXPlayer--;
+				System.out.println();
+				System.out.println("O player se moveu na direcao norte");
 				break;
 			case 's': 
-				posicaoYPlayer++;
+				posicaoXPlayer++;
+				System.out.println();
+				System.out.println("O player se moveu na direcao sul");
 				break;
 			case 'a': 
-				posicaoXPlayer--;
+				posicaoYPlayer--;
+				System.out.println();
+				System.out.println("O player se moveu na direcao oeste");
 				break;
 			case 'd': 
-				posicaoXPlayer++;
+				posicaoYPlayer++;
+				System.out.println();
+				System.out.println("O player se moveu na direcao leste");
 				break;
 		}
 	}
 	private boolean possibleMovement(char movement) {
 		
 		if(movement == 'w') {
-			if(posicaoXPlayer == x - 1) {
+			if(posicaoXPlayer == 0) {
 				return false;
 			}
 			else {
@@ -70,7 +78,7 @@ public class Mapa extends Player {
 			}
 		}
 		if(movement == 's') {
-			if(posicaoXPlayer == 0) {
+			if(posicaoXPlayer == x  - 1) {
 				return false;
 			}
 			else {
@@ -96,7 +104,7 @@ public class Mapa extends Player {
 		return false;
 	}
 	private boolean achouPokemonSelvagem() {
-		if(2 < decide(5)) {
+		if(18 == decide(20)) {
 			return true;
 		}
 		return false;
@@ -118,11 +126,12 @@ public class Mapa extends Player {
 		mapaTeste.posicaoXPlayer = gerador.nextInt(mapaTeste.x);
 		mapaTeste.posicaoYPlayer = gerador.nextInt(mapaTeste.y);
 		mapaTeste.imprimirMapa();
-		while(batalhaJaOcorreu) {
+		while(!batalhaJaOcorreu) {
 			if(mapaTeste.AndandoNaGrama()) {
 				if(mapaTeste.achouPokemonSelvagem()) {
 					Battle batalha = new Battle(Ps);
 					//batalha.action();
+					System.out.println("FIM");
 					return;
 				}
 			}
@@ -130,6 +139,7 @@ public class Mapa extends Player {
 				movement = movimentoAleatorio();
 				if(mapaTeste.possibleMovement(movement)) {
 					mapaTeste.playerMoves(movement);
+					mapaTeste.imprimirMapa();
 				}
 				else {
 					while(!mapaTeste.possibleMovement(movement)) {
