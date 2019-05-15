@@ -8,8 +8,8 @@ abstract public class Event extends Throwable {
 		this.description =  description;
 	}
 	public void happen() throws Event {
-		System.out.println(this.name+": "+this.description);
 		this.action();
+		System.out.println(this.name+": "+this.description);
 	}
 	abstract public void action() throws Event;
 }
