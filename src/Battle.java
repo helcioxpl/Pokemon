@@ -96,96 +96,31 @@ public class Battle extends Event{
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
 
+		Pokemon[] pokes;
+		String s;
 		BufferedReader input = new BufferedReader(new FileReader("Pokemons.txt"));
+		for(int i = 0; i < 12; i++){
+			s = input.readLine();
+			pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+			for(int j = 0;j < 4; j++){
+				s = input.readLine();
+				pokes[i].addAttack(j,s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+			}
+			input.readLine();
+		}
+		input.close();
 
-		Pokemon pikachu = new Pokemon("Pikachu",200);
-		pikachu.addAttack(0,"Thunder shock",30);
-		pikachu.addAttack(1,"Discharge",40);
-		pikachu.addAttack(2,"Thunderbolt",35);
-		pikachu.addAttack(3,"Quick Attack",20);
+		Random r = new Random();
+		Pokemon pk;
+		for(int i = 12, int j = 0; i > 0; i--){
+			n = r.nextInt(i);
+			pk = pokes[n];
+			pokes[i] = pokes[n];
 
-		Pokemon charmander = new Pokemon("Charmander",150);
-		charmander.addAttack(0,"Scratch",40);
-		charmander.addAttack(1,"Ember",50);
-		charmander.addAttack(2,"Metal Claw",45);
-		charmander.addAttack(3,"Rosnar",30);
-
-		Pokemon pidgey = new Pokemon("Pidgey",200);
-		pidgey.addAttack(0,"Tackle",30);
-		pidgey.addAttack(1,"Twister",40);
-		pidgey.addAttack(2,"Air Cutter",35);
-		pidgey.addAttack(3,"Quick Attack",20);
-
-		Pokemon meowth = new Pokemon("Meowth",250);
-		meowth.addAttack(0,"Bite",30);
-		meowth.addAttack(1,"Dark Pulse",40);
-		meowth.addAttack(2,"Fogo",35);
-		meowth.addAttack(3,"Scratch",20);
-
-		Pokemon golduck = new Pokemon("Golduck",200);
-		golduck.addAttack(0,"Water Gun",30);
-		golduck.addAttack(1,"Hydro Pump",40);
-		golduck.addAttack(2,"Ice Beam",35);
-		golduck.addAttack(3,"Confusion",20);
-
-		Pokemon arcanine = new Pokemon("Arcanine",200);
-		arcanine.addAttack(0,"Fire Fang",30);
-		arcanine.addAttack(1,"Crunch",40);
-		arcanine.addAttack(2,"Fire Blast",35);
-		arcanine.addAttack(3,"Snarl",20);
-
-		Pokemon kadabra = new Pokemon("Kadabra",100);
-		kadabra.addAttack(0,"Psycho Cut",30);
-		kadabra.addAttack(1,"Shadow Ball",40);
-		kadabra.addAttack(2,"Psybeam",35);
-		kadabra.addAttack(3,"Confusion",20);
-
-		Pokemon magnemite = new Pokemon("Magnemite",200);
-		magnemite.addAttack(0,"Thunder Shock",30);
-		magnemite.addAttack(1,"Magnet Bomb",40);
-		magnemite.addAttack(2,"Thunderbolt",35);
-		magnemite.addAttack(3,"Spark",20);
-
-		Pokemon onix = new Pokemon("Onix",200);
-		onix.addAttack(0,"Tackle",30);
-		onix.addAttack(1,"Stone Edge",40);
-		onix.addAttack(2,"Sand Tomb",35);
-		onix.addAttack(3,"Rock Throw",20);
-
-		Pokemon sandslash = new Pokemon("Sandslash",200);
-		sandslash.addAttack(0,"Metal Claw",30);
-		sandslash.addAttack(1,"Earthquake",40);
-		sandslash.addAttack(2,"Rock Tomb",35);
-		sandslash.addAttack(3,"Mud Shot",20);
-
-		Pokemon squirtle = new Pokemon("Squirtle",200);
-		squirtle.addAttack(0,"Fire",30);
-		squirtle.addAttack(1,"Fogao",40);
-		squirtle.addAttack(2,"Fogo",35);
-		squirtle.addAttack(3,"Foguinho",20);
-
-		Pokemon bulbassauro = new Pokemon("Bulbassauro",200);
-		bulbassauro.addAttack(0,"Bubble",30);
-		bulbassauro.addAttack(1,"Water Pulse",40);
-		bulbassauro.addAttack(2,"Aqua Jet",35);
-		bulbassauro.addAttack(3,"Tackle",20);
-
-		//Ps[1].setAtual(5);
-		Ps[1].addPokemon(pikachu);
-		Ps[1].addPokemon(charmander);
-		Ps[1].addPokemon(pidgey);
-		Ps[1].addPokemon(meowth);
-		Ps[1].addPokemon(golduck);
-		Ps[1].addPokemon(arcanine);
-
-		//Ps[0].setAtual(5);
-		Ps[0].addPokemon(kadabra);
-		Ps[0].addPokemon(magnemite);
-		Ps[0].addPokemon(onix);
-		Ps[0].addPokemon(sandslash);
-		Ps[0].addPokemon(squirtle);
-		Ps[0].addPokemon(bulbassauro);
-
+			Ps[j].addPokemon(k);
+			j = 1-j;
+		}
+		
 		Battle b = new Battle(Ps);
 		try{
 			b.happen();

@@ -1,0 +1,71 @@
+200 Pikachu
+030 Thunder shock
+040 Discharge
+035 Thunderbolt
+020 Quick Attack
+
+150 Charmander
+040 Scratch
+050 Ember
+045 Metal Claw
+030 Rosnar
+
+200 Pidgey
+030 Tackle
+040 Twister
+035 Air Cutter
+020 Quick Attack
+
+250 Meowth
+030 Bite
+040 Dark Pulse
+035 Fogo
+020 Scratch
+
+200 Golduck
+030 Water Gun
+040 Hydro Pump
+035 Ice Beam
+020 Confusion
+
+200 Arcanine
+030 Fire Fang
+040 Crunch
+035 Fire Blast
+020 Snarl
+
+100 Kadabra
+030 Psycho Cut
+040 Shadow Ball
+035 Psybeam
+020 Confusion
+
+200 Magnemite
+030 Thunder Shock
+040 Magnet Bomb
+035 Thunderbolt
+020 Spark
+
+200 Onix
+030 Tackle
+040 Stone Edge
+035 Sand Tomb
+020 Rock Throw
+
+200 Sandslash
+030 Metal Claw
+040 Earthquake
+035 Rock Tomb
+020 Mud Shot
+
+200 Squirtle
+030 Fire
+040 Fogao
+035 Fogo
+020 Foguinho
+
+200 Bulbassauro
+030 Bubble
+040 Water Pulse
+035 Aqua Jet
+002 Tackle
