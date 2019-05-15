@@ -6,8 +6,7 @@ public class Mapa extends Player {
 	private int x;
 	private int y;
 	static char[][] mapa;// . quando gramado, ' ' quando concreto e P a posicao do player
-	private int posicaoXPlayer;
-	private int posicaoYPlayer;
+	private int pos = new int[2];
 	public Mapa(int x, int y, char[][] concretoGramado) {
 		super("Pokemon selvagem");
 		mapa = concretoGramado;
@@ -21,139 +20,65 @@ public class Mapa extends Player {
 				System.out.print("--");
 			System.out.println("");
 			for(j = 0;j < y;j++)
-				System.out.print((posicaoXPlayer == i && posicaoYPlayer == j)?"|P":("|"+mapa[i][j]));
+				System.out.print((pos[0] == i && pos[1] == j)?"|P":("|"+mapa[i][j]));
 			System.out.println("|");
 		}
 		for (j = 0;j < y;j++)
 			System.out.print("- ");
 	}
 	private boolean AndandoNaGrama() {
-		if(mapa[posicaoXPlayer][posicaoYPlayer] == '.') {
-			return true;
-		}
-		return false;
+		return (mapa[pos[0]][pos[1]] == '.');
 	}
-	private static char movimentoAleatorio() {
-		int i = decide(4);
-		switch(i) {
-			case 0: return 'w';
-			case 1: return 's';
-			case 2: return 'a';
-			case 3: return 'd';
-		}
-		return'q';
+	private void playerMoves(int mov) { 
+		pos[mov % 2] += (mov>1)?1:-1;
+		String dir[] = ["norte","oeste","sul","leste"]
+		System.out.println("\nO player se moveu na direcao "+dir[mov]);
 	}
-	private void playerMoves(char direcao) {// w = cima, s = abaixo, a = esquerda e d =direita
-		switch(direcao) {
-			case 'w': 
-				posicaoXPlayer--;
-				System.out.println();
-				System.out.println("O player se moveu na direcao norte");
-				break;
-			case 's': 
-				posicaoXPlayer++;
-				System.out.println();
-				System.out.println("O player se moveu na direcao sul");
-				break;
-			case 'a': 
-				posicaoYPlayer--;
-				System.out.println();
-				System.out.println("O player se moveu na direcao oeste");
-				break;
-			case 'd': 
-				posicaoYPlayer++;
-				System.out.println();
-				System.out.println("O player se moveu na direcao leste");
-				break;
-		}
-	}
-	private boolean possibleMovement(char movement) {
-		
-		if(movement == 'w') {
-			if(posicaoXPlayer == 0) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-		if(movement == 's') {
-			if(posicaoXPlayer == x  - 1) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-		if(movement == 'a') {
-			if(posicaoYPlayer == 0) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-		if(movement == 'd') {
-			if(posicaoYPlayer == y - 1) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-		return false;
+	private boolean possibleMovement(int mov) {
+		if (mov < 2) return pos[mov % 2] > 0;
+		else return pos[mov % 2] < (mov % 2)?y:x;
 	}
 	private boolean achouPokemonSelvagem() {
-		if(2 == decide(3)) {
-			return true;
-		}
-		return false;
+		return (2 == decide(3))
 	}
 	public static void main (String[] args) {
 		Random gerador = new Random();
 		char movement;
 		boolean batalhaJaOcorreu = false;
-		Player[] Ps = {new Player("A"),new Player("Pokemon Selvagem")};
-		int[] dim = {gerador.nextInt(7)+5,gerador.nextInt(5)+15};
+
+		Player[] Ps = { new Player("A"),new Player("Pokemon Selvagem") };
+		int[] dim = { gerador.nextInt(7)+5 , gerador.nextInt(5)+15 };
 		char[][] teste = new char[dim[0]][dim[1]];
+
 		int i,j;
 		for(i = 0; i < dim[0]; i++) {
 			for(j = 0; j < dim[1]; j++) {
 				teste[i][j] = (gerador.nextBoolean())?' ':'.';
 			}
 		}
-		Mapa mapaTeste = new Mapa(dim[0], dim[1], teste);
-		mapaTeste.posicaoXPlayer = gerador.nextInt(mapaTeste.x);
-		mapaTeste.posicaoYPlayer = gerador.nextInt(mapaTeste.y);
-		mapaTeste.imprimirMapa();
+
+		Mapa mapa = new Mapa(dim[0], dim[1], teste);
+		mapa.pos = [gerador.nextInt(mapa.x),gerador.nextInt(mapa.y)];
+		mapa.imprimirMapa();
 		while(!batalhaJaOcorreu) {
-			if(mapaTeste.AndandoNaGrama()) {
-				if(mapaTeste.achouPokemonSelvagem()) {
+			if(mapa.AndandoNaGrama()) {
+				if(mapa.achouPokemonSelvagem()) {
+					System.out.println("Achou pokemon");
 					Battle batalha = new Battle(Ps);
 					//batalha.action();
-					System.out.println("Achou pokemon");
 					return;
 				}
 			}
 			else {
-				movement = movimentoAleatorio();
-				if(mapaTeste.possibleMovement(movement)) {
-					mapaTeste.playerMoves(movement);
-					mapaTeste.imprimirMapa();
+				mov = this.decide(4)
+				while(!mapa.possibleMovement(mov)) {
+					System.out.println("Movimento inválido");
+					mov = this.decide(4) // w = cima, s = abaixo, a = esquerda e d =direita q = quit
 				}
-				else {
-					while(!mapaTeste.possibleMovement(movement)) {
-						System.out.println("Movimento invalido");
-						movement = movimentoAleatorio();
-				
-					}
-				}
-				
-			}
-			
-		}
-		
-		
-	}
 
+				mapa.playerMoves(mov);
+				mapa.imprimirMapa();
+			}
+		}
+	}
 }
