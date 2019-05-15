@@ -15,9 +15,9 @@ public class Battle extends Event{
 			this.description = Ps[i].getName()+"'s "+Ps[i].getAtual().getName()+" used his "+n.getNome();
 		}
 		public void action() throws end{
-			Pokemon pk = Ps[1-i].getAtual()
+			Pokemon pk = Ps[1-i].getAtual();
 			int hp = pk.damage(n.getDano());
-			System.out.println(Ps[1-i].getNome()+"'s "+pk.getNome()+" is now with "+hp+"hp");
+			System.out.println(Ps[1-i].getName()+"'s "+pk.getName()+" is now with "+hp+"hp");
 			if (v == 0) 
 				if(!Ps[1-i].nextPokemon()) throw new end(1-i,"has no more Pokemon");
 		}
@@ -101,7 +101,7 @@ public class Battle extends Event{
 		try{
 			BufferedReader input = new BufferedReader(new FileReader("Pokemons.txt"));
 		} catch (FileNotFoundException e){
-			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.")
+			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
 		}
 		for(int i = 0; i < 12; i++){
@@ -117,7 +117,7 @@ public class Battle extends Event{
 
 		Random r = new Random();
 		Pokemon pk;
-		for(int i = 12, int j = 0; i > 0; i--){
+		for(int i = 12, j = 0; i > 0; i--){
 			n = r.nextInt(i);
 			pk = pokes[n];
 			pokes[n] = pokes[i];
