@@ -115,12 +115,12 @@ public class Battle extends Event{
 		for(int i = 12, int j = 0; i > 0; i--){
 			n = r.nextInt(i);
 			pk = pokes[n];
-			pokes[i] = pokes[n];
+			pokes[n] = pokes[i];
 
 			Ps[j].addPokemon(k);
 			j = 1-j;
 		}
-		
+
 		Battle b = new Battle(Ps);
 		try{
 			b.happen();
