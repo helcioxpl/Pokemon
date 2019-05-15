@@ -96,7 +96,7 @@ public class Battle extends Event{
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
 
-		input = new BufferedItem(new FileReader("Pokemons.txt"));
+		BufferedReader input = new BufferedReader(new FileReader("Pokemons.txt"));
 
 		Pokemon pikachu = new Pokemon("Pikachu",200);
 		pikachu.addAttack(0,"Thunder shock",30);
