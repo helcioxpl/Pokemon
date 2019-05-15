@@ -15,6 +15,7 @@ public class Player {
 	public void addPokemon(Pokemon p) {
 		if(numPokemons == 6) {
 			System.out.println("Pokedex cheia");
+			return;
 		}
 		this.p[numPokemons] = p;
 		System.out.println("Estou na posicao" +numPokemons);
