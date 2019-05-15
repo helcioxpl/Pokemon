@@ -117,7 +117,7 @@ public class Battle extends Event{
 			pk = pokes[n];
 			pokes[n] = pokes[i];
 
-			Ps[j].addPokemon(k);
+			Ps[j].addPokemon(pk);
 			j = 1-j;
 		}
 
