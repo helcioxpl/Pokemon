@@ -98,7 +98,12 @@ public class Battle extends Event{
 
 		Pokemon[] pokes;
 		String s;
-		BufferedReader input = new BufferedReader(new FileReader("Pokemons.txt"));
+		try{
+			BufferedReader input = new BufferedReader(new FileReader("Pokemons.txt"));
+		} catch (FileNotFoundException e){
+			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.")
+			return;
+		}
 		for(int i = 0; i < 12; i++){
 			s = input.readLine();
 			pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
