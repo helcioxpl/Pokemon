@@ -152,10 +152,10 @@ public class Battle extends Event{
 		//Ps[1].setAtual(5);
 		Ps[1].addPokemon(pikachu);
 		Ps[1].addPokemon(charmander);
-		Ps[0].addPokemon(pidgey);
-		Ps[0].addPokemon(meowth);
-		Ps[0].addPokemon(golduck);
-		Ps[0].addPokemon(arcanine);
+		Ps[1].addPokemon(pidgey);
+		Ps[1].addPokemon(meowth);
+		Ps[1].addPokemon(golduck);
+		Ps[1].addPokemon(arcanine);
 		//Ps[0].setAtual(5);
 		Ps[0].addPokemon(kadabra);
 		Ps[0].addPokemon(magnemite);
