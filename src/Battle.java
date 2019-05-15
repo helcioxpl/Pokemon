@@ -89,23 +89,40 @@ public class Battle extends Event{
 	}
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
-		Pokemon p = new Pokemon("Pikachu",200);
-		p.addAttack(0,"Raio do trovão",30);
-		p.addAttack(1,"Raio do trovão",30);
-		p.addAttack(2,"Raio do trovão",30);
-		p.addAttack(3,"Raio do trovão",30);
-		Ps[1].setAtual(5);
-		Ps[1].addPokemon(p);
-		Ps[0].setAtual(5);
-		Ps[0].addPokemon(p);
+		Pokemon pikachu = new Pokemon("Pikachu",200);
+		pikachu.addAttack(0,"Raio do trovão",30);
+		pikachu.addAttack(1,"Esfera eletrica",40);
+		pikachu.addAttack(2,"Investida trovão",35);
+		pikachu.addAttack(3,"Ataque Rapido",20);
+		Pokemon charmander = new Pokemon("Charmander",200);
+		charmander.addAttack(0,"Fire",30);
+		charmander.addAttack(1,"Fogao",40);
+		charmander.addAttack(2,"Fogo",35);
+		charmander.addAttack(3,"Foguinho",20);
+		Pokemon squirtle = new Pokemon("Squirtle",200);
+		squirtle.addAttack(0,"Fire",30);
+		squirtle.addAttack(1,"Fogao",40);
+		squirtle.addAttack(2,"Fogo",35);
+		squirtle.addAttack(3,"Foguinho",20);
+		Pokemon bulbassauro = new Pokemon("Bulbassauro",200);
+		bulbassauro.addAttack(0,"Fire",30);
+		bulbassauro.addAttack(1,"Fogao",40);
+		bulbassauro.addAttack(2,"Fogo",35);
+		bulbassauro.addAttack(3,"Foguinho",20);
+		//Ps[1].setAtual(5);
+		Ps[1].addPokemon(pikachu);
+		Ps[1].addPokemon(charmander);
+		//Ps[0].setAtual(5);
+		Ps[0].addPokemon(squirtle);
+		Ps[0].addPokemon(bulbassauro);
 
 		Battle b = new Battle(Ps);
-		/*try{
+		try{
 			b.happen();
 		} catch (Event e){
 			return;
-		}*/
-		b.action();
+		}
+		//b.action();
 	}
 }
 

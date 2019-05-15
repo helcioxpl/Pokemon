@@ -104,7 +104,7 @@ public class Mapa extends Player {
 		return false;
 	}
 	private boolean achouPokemonSelvagem() {
-		if(18 == decide(20)) {
+		if(2 == decide(3)) {
 			return true;
 		}
 		return false;
@@ -131,7 +131,7 @@ public class Mapa extends Player {
 				if(mapaTeste.achouPokemonSelvagem()) {
 					Battle batalha = new Battle(Ps);
 					//batalha.action();
-					System.out.println("FIM");
+					System.out.println("Achou pokemon");
 					return;
 				}
 			}

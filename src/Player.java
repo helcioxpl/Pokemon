@@ -5,6 +5,7 @@ public class Player {
 	Pokemon[] p = new Pokemon[6];
 	Item[] pt = new Item[5];
 	protected int atual = 0;
+	private int numPokemons = 0;
 	static Random r = new Random();
 	
 	public Player(String nome){
@@ -12,7 +13,12 @@ public class Player {
 	}
 	
 	public void addPokemon(Pokemon p) {
-		this.p[atual] = p;
+		if(numPokemons == 6) {
+			System.out.println("Pokedex cheia");
+		}
+		this.p[numPokemons] = p;
+		System.out.println("Estou na posicao" +numPokemons);
+		numPokemons++;
 	}
 	
 	public String getName() {
