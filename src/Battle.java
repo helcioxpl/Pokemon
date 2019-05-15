@@ -1,3 +1,7 @@
+import  java.io.BufferedReader;
+import  java.io.FileReader;
+import java.io.IOException;
+
 public class Battle extends Event{
 	int i;
 	private Player[] Ps;
@@ -11,8 +15,9 @@ public class Battle extends Event{
 			this.description = Ps[i].getName()+"'s "+Ps[i].getAtual().getName()+" used his "+n.getNome();
 		}
 		public void action() throws end{
-			int v = Ps[1-i].getAtual().damage(n.getDano());
-			System.out.println("Hp Pok B: "+v);
+			Pokemon pk = Ps[1-i].getAtual()
+			int hp = pk.damage(n.getDano());
+			System.out.println(Ps[1-i].getNome()+"'s "+pk.getNome()+" is now with "+hp+"hp");
 			if (v == 0) 
 				if(!Ps[1-i].nextPokemon()) throw new end(1-i,"has no more Pokemon");
 		}
@@ -43,7 +48,7 @@ public class Battle extends Event{
 	}
 	class end extends Event{
 		public end(int p, String reason) {
-			super("Battle end",Ps[p].getName()+" "+reason+". Battle ended. "+Ps[1-p].getName()+" wins!");
+			super("Battle ended",Ps[p].getName()+" "+reason+". "+Ps[1-p].getName()+" wins!");
 		}
 		public void action() {
 			return;
@@ -61,12 +66,12 @@ public class Battle extends Event{
 		Class<?>[] Evs = { attack.class, changePokemon.class, useItem.class, flee.class, end.class};
 		int[] E = new int[2];
 		while (true){ //rodadas
-			E[0] = Ps[0].decide(8);
-			E[0] = (E[0] >= 4)?0:E[0];
-			E[1] = Ps[1].decide(8);
-			E[1] = (E[1] >= 4)?0:E[1];
-			
+			for(int j = 0;j < 2; j++) {	
+				E[j] = Ps[j].decide(8);
+				E[j] = (E[j] >= 4)?0:E[j];
+			}
 			i = (E[1] > E[0])?1:0;
+
 			for(int j = 0;j < 2;j++, i = 1-i) {
 				try {
 					((Event) Evs[E[i]].getConstructors()[0].newInstance(this)).happen();
@@ -89,66 +94,81 @@ public class Battle extends Event{
 	}
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
+
+		input = new BufferedItem(new FileReader("Pokemons.txt"));
+
 		Pokemon pikachu = new Pokemon("Pikachu",200);
 		pikachu.addAttack(0,"Raio do trovão",30);
 		pikachu.addAttack(1,"Esfera eletrica",40);
 		pikachu.addAttack(2,"Investida trovão",35);
 		pikachu.addAttack(3,"Ataque Rapido",20);
+
 		Pokemon charmander = new Pokemon("Charmander",200);
 		charmander.addAttack(0,"Fire",30);
 		charmander.addAttack(1,"Fogao",40);
 		charmander.addAttack(2,"Fogo",35);
 		charmander.addAttack(3,"Foguinho",20);
+
 		Pokemon pidgey = new Pokemon("Pidgey",200);
 		pidgey.addAttack(0,"Fire",30);
 		pidgey.addAttack(1,"Fogao",40);
 		pidgey.addAttack(2,"Fogo",35);
 		pidgey.addAttack(3,"Foguinho",20);
+
 		Pokemon meowth = new Pokemon("Pidgey",200);
 		meowth.addAttack(0,"Fire",30);
 		meowth.addAttack(1,"Fogao",40);
 		meowth.addAttack(2,"Fogo",35);
 		meowth.addAttack(3,"Foguinho",20);
+
 		Pokemon golduck = new Pokemon("Pidgey",200);
 		golduck.addAttack(0,"Fire",30);
 		golduck.addAttack(1,"Fogao",40);
 		golduck.addAttack(2,"Fogo",35);
 		golduck.addAttack(3,"Foguinho",20);
+
 		Pokemon arcanine = new Pokemon("Pidgey",200);
 		arcanine.addAttack(0,"Fire",30);
 		arcanine.addAttack(1,"Fogao",40);
 		arcanine.addAttack(2,"Fogo",35);
 		arcanine.addAttack(3,"Foguinho",20);
+
 		Pokemon kadabra = new Pokemon("Pidgey",200);
 		kadabra.addAttack(0,"Fire",30);
 		kadabra.addAttack(1,"Fogao",40);
 		kadabra.addAttack(2,"Fogo",35);
 		kadabra.addAttack(3,"Foguinho",20);
+
 		Pokemon magnemite = new Pokemon("Pidgey",200);
 		magnemite.addAttack(0,"Fire",30);
 		magnemite.addAttack(1,"Fogao",40);
 		magnemite.addAttack(2,"Fogo",35);
 		magnemite.addAttack(3,"Foguinho",20);
+
 		Pokemon onix = new Pokemon("Pidgey",200);
 		onix.addAttack(0,"Fire",30);
 		onix.addAttack(1,"Fogao",40);
 		onix.addAttack(2,"Fogo",35);
 		onix.addAttack(3,"Foguinho",20);
+
 		Pokemon sandslash = new Pokemon("Pidgey",200);
 		sandslash.addAttack(0,"Fire",30);
 		sandslash.addAttack(1,"Fogao",40);
 		sandslash.addAttack(2,"Fogo",35);
 		sandslash.addAttack(3,"Foguinho",20);
+
 		Pokemon squirtle = new Pokemon("Squirtle",200);
 		squirtle.addAttack(0,"Fire",30);
 		squirtle.addAttack(1,"Fogao",40);
 		squirtle.addAttack(2,"Fogo",35);
 		squirtle.addAttack(3,"Foguinho",20);
+
 		Pokemon bulbassauro = new Pokemon("Bulbassauro",200);
 		bulbassauro.addAttack(0,"Fire",30);
 		bulbassauro.addAttack(1,"Fogao",40);
 		bulbassauro.addAttack(2,"Fogo",35);
 		bulbassauro.addAttack(3,"Foguinho",20);
+
 		//Ps[1].setAtual(5);
 		Ps[1].addPokemon(pikachu);
 		Ps[1].addPokemon(charmander);

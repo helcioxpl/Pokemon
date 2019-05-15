@@ -2,8 +2,10 @@ import java.util.Random;
 
 public class Player {
 	private String name;
+
 	Pokemon[] p = new Pokemon[6];
 	Item[] pt = new Item[5];
+
 	protected int atual = 0;
 	private int numPokemons = 0;
 	static Random r = new Random();
@@ -28,15 +30,20 @@ public class Player {
 	
 	public boolean chgPokemon(){
 		Pokemon aux;
-		if ((6 - atual - 1) <= 0) return false;
-		int n = decide(6 - atual - 1) + atual + 1;
+		int n = 6 - atual - 1;
+		if (n <= 0) return false;
+		
+		n = decide(n) + atual + 1;
 		aux = p[n];
 		p[n] = p[atual];
 		p[atual] = aux;
 		return true;
 	}
-	public static int decide(int x) {
+	public int decide(int x) {
 		return r.nextInt(x);
+	}
+	public int choose(Choice c){
+		return r.nextInt(c.n);
 	}
 	public Pokemon getAtual() {
 		return p[atual];
@@ -46,9 +53,6 @@ public class Player {
 	}
 	public boolean nextPokemon() {
 		atual++;
-		if(atual == 6) {
-			return false;
-		}
-		return true;
+		return atual < 6;
 	}
 }
