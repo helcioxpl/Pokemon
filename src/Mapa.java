@@ -6,7 +6,7 @@ public class Mapa extends Player {
 	private int x;
 	private int y;
 	static char[][] mapa;// . quando gramado, ' ' quando concreto e P a posicao do player
-	private[] int pos = new int[2];
+	private int[] pos = new int[2];
 
 	public Mapa(int x, int y, char[][] concretoGramado) {
 		this(x,y,concretoGramado,"Aleatório");
