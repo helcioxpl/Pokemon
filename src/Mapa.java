@@ -48,9 +48,6 @@ public class Mapa extends Player {
 		else return (pos[mov % 2] < ((mov % 2 == 1)?y:x));
 	}
 
-	class move extends Event {
-
-	}
 	public static void main (String[] args) {
 		int[] dim = { r.nextInt(7)+5 , r.nextInt(5)+15 };
 		char[][] teste = new char[dim[0]][dim[1]];
@@ -70,7 +67,7 @@ public class Mapa extends Player {
 		int mov;
 		while (true){
 			if(mapa.AndandoNaGrama()) {
-				if(decide(3) == 2){
+				if(mapa.decide(3) == 2){
 					System.out.println("Achou pokemon");
 					Battle batalha = new Battle(Ps);
 					batalha.happen();
