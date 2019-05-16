@@ -104,23 +104,21 @@ public class Battle extends Event{
 		BufferedReader input;
 		try{
 			input = new BufferedReader(new FileReader("Pokemons.txt"));
+			
+			for(int i = 0; i < 12; i++){
+				s = input.readLine();
+				pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+				for(int j = 0;j < 4; j++){
+					s = input.readLine();
+					pokes[i].addAttack(j,s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+				}
+				input.readLine();
+			}
+			input.close();
 		} catch (FileNotFoundException e){
 			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
-		} 
-		
-		try {
-		for(int i = 0; i < 12; i++){
-			s = input.readLine();
-			pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
-			for(int j = 0;j < 4; j++){
-				s = input.readLine();
-				pokes[i].addAttack(j,s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
-			}
-			input.readLine();
-		}
-		input.close();
-		}catch (IOException e){
+		} catch (IOException e) {
 			System.out.println("Game coundn't read Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
 		}
