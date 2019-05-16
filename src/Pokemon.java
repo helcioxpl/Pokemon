@@ -70,8 +70,8 @@ public class Pokemon {
 			Random r = new Random();
 			Pokemon pk;
 			int n;
-			for(int i = 12, j = 0; i > 0; i--){
-				n = r.nextInt(i);
+			for(int i = 11, j = 0; i > 0; i--){
+				n = r.nextInt(i+1);
 				pk = pokes[n];
 				pokes[n] = pokes[i];
 	

@@ -71,8 +71,8 @@ public class Mapa extends Player {
 		mapa.imprimirMapa();
 
 		int mov;
-		while (1){
-			for(int i = 0; i < Evs.length; i++){
+		while (true){
+			for(int i = 0; i < Evs.length(); i++){
 				Evs[i].happen();
 			}
 			else {
