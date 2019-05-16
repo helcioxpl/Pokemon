@@ -99,7 +99,7 @@ public class Battle extends Event{
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
 
-		Pokemon[] pokes = new Pokemon[6];
+		Pokemon[] pokes = new Pokemon[12];
 		String s;
 		BufferedReader input;
 		try{
@@ -115,7 +115,7 @@ public class Battle extends Event{
 				input.readLine();
 			}
 			input.close();
-			
+
 			Random r = new Random();
 			Pokemon pk;
 			int n;
