@@ -48,29 +48,12 @@ public class Mapa extends Player {
 
 	private boolean possibleMovement(int mov) {
 		if (mov < 2) return (pos[mov % 2] > 0);
-		else return (pos[mov % 2] < ((mov % 2)?y:x));
+		else return (pos[mov % 2] < ((mov % 2 == 1)?y:x));
 	}
 
 	class move extends Event {
 
 	}
-
-	class wildPokemonAppears extends Event {
-		public useItem(){
-			super("Wild Pokemon Appeared","You found a wild ");
-		}
-		public void action(){
-			this.atual = 5;
-			this.description += this.getAtual().getNome()+".Prepare for battle!";
-			this.add(new Battle(Ps));
-		}
-	}
-
-	private void add(Event e){
-		Evs[last] = e;
-		last++;
-	}
-
 	public static void main (String[] args) {
 		int[] dim = { r.nextInt(7)+5 , r.nextInt(5)+15 };
 		char[][] teste = new char[dim[0]][dim[1]];
