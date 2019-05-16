@@ -44,17 +44,12 @@ public class Mapa extends Player {
 
 	private boolean possibleMovement(int mov) {
 		if (mov < 2) return (pos[mov % 2] > 0);
-		else return (pos[mov % 2] < (mov % 2)?y:x);
+		else return (pos[mov % 2] < ((mov % 2 == 1)?y:x));
 	}
 
 	private boolean achouPokemonSelvagem() {
 		return (2 == decide(3));
 	}
-
-	class move extends Event {
-
-	}
-
 	public static void main (String[] args) {
 		Random gerador = new Random();
 		boolean batalhaJaOcorreu = false;
