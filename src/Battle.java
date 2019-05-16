@@ -115,24 +115,24 @@ public class Battle extends Event{
 				input.readLine();
 			}
 			input.close();
+			
+			Random r = new Random();
+			Pokemon pk;
+			int n;
+			for(int i = 12, j = 0; i > 0; i--){
+				n = r.nextInt(i);
+				pk = pokes[n];
+				pokes[n] = pokes[i];
+	
+				Ps[j].addPokemon(pk);
+				j = 1-j;
+			}
 		} catch (FileNotFoundException e){
 			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
 		} catch (IOException e) {
 			System.out.println("Game coundn't read Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
-		}
-
-		Random r = new Random();
-		Pokemon pk;
-		int n;
-		for(int i = 12, j = 0; i > 0; i--){
-			n = r.nextInt(i);
-			pk = pokes[n];
-			pokes[n] = pokes[i];
-
-			Ps[j].addPokemon(pk);
-			j = 1-j;
 		}
 
 		Battle b = new Battle(Ps);
