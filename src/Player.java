@@ -20,7 +20,6 @@ public class Player {
 			return;
 		}
 		this.p[numPokemons] = p;
-		System.out.println("Estou na posicao" +numPokemons);
 		numPokemons++;
 	}
 	

@@ -64,6 +64,7 @@ public class Mapa extends Player {
 
 		Mapa mapa = new Mapa(dim[0], dim[1], teste);
 		Player[] Ps = { mapa, new Player("A") };
+		Pokemon.populate(Ps);
 
 		mapa.pos[0] = r.nextInt(mapa.x);
 		mapa.pos[1] = r.nextInt(mapa.y);
