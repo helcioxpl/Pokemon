@@ -107,11 +107,9 @@ public class Battle extends Event{
 		} catch (FileNotFoundException e){
 			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
-		} catch (IOException e){
-			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
-			return;
-		}
+		} 
 		
+		try {
 		for(int i = 0; i < 12; i++){
 			s = input.readLine();
 			pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
@@ -122,6 +120,10 @@ public class Battle extends Event{
 			input.readLine();
 		}
 		input.close();
+		}catch (IOException e){
+			System.out.println("Game coundn't read Pokemon file, please make sure it is in the smae directory as the script.");
+			return;
+		}
 
 		Random r = new Random();
 		Pokemon pk;
