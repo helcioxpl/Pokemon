@@ -9,9 +9,6 @@ public class Mapa extends Player {
 	static char[][] mapa;// . quando gramado, ' ' quando concreto e P a posicao do player
 	private int[] pos = new int[2];
 
-	private Event[] Evs = new Event[5];
-	private int last = 0;
-
 	public Mapa(int x, int y, char[][] concretoGramado) {
 		this(x,y,concretoGramado,"Aleatório");
 	}
@@ -72,8 +69,13 @@ public class Mapa extends Player {
 
 		int mov;
 		while (true){
-			for(int i = 0; i < Evs.length(); i++){
-				Evs[i].happen();
+			if(mapa.AndandoNaGrama()) {
+				if(decide(3) == 2){
+					System.out.println("Achou pokemon");
+					Battle batalha = new Battle(Ps);
+					batalha.happen();
+					return;
+				}
 			}
 			else {
 				mov = Ps[1].decide(4);
@@ -85,8 +87,6 @@ public class Mapa extends Player {
 				mapa.playerMoves(mov);
 				mapa.imprimirMapa();
 			}
-			if(mapa.AndandoNaGrama())
-				if(decide(3) == 2) add(new wildPokemonAppears);
 		}
 	}
 }

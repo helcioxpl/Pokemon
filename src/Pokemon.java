@@ -58,10 +58,10 @@ public class Pokemon {
 			
 			for(int i = 0; i < 12; i++){
 				s = input.readLine();
-				pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+				pokes[i] = new Pokemon(s.substring(4, s.length()), Integer.parseInt(s.substring(0,3)));
 				for(int j = 0;j < 4; j++){
 					s = input.readLine();
-					pokes[i].addAttack(j,s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+					pokes[i].addAttack(j,s.substring(4, s.length()), Integer.parseInt(s.substring(0,3)));
 				}
 				input.readLine();
 			}
