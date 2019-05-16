@@ -1,6 +1,8 @@
 import  java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import  java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 public class Battle extends Event{
 	int i;
@@ -18,7 +20,7 @@ public class Battle extends Event{
 			Pokemon pk = Ps[1-i].getAtual();
 			int hp = pk.damage(n.getDano());
 			System.out.println(Ps[1-i].getName()+"'s "+pk.getName()+" is now with "+hp+"hp");
-			if (v == 0) 
+			if (hp == 0) 
 				if(!Ps[1-i].nextPokemon()) throw new end(1-i,"has no more Pokemon");
 		}
 	}
@@ -117,6 +119,7 @@ public class Battle extends Event{
 
 		Random r = new Random();
 		Pokemon pk;
+		int n;
 		for(int i = 12, j = 0; i > 0; i--){
 			n = r.nextInt(i);
 			pk = pokes[n];
