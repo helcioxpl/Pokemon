@@ -103,7 +103,7 @@ public class Battle extends Event{
 		String s;
 		BufferedReader input;
 		try{
-			input = new BufferedReader(new FileReader("Pokemons.txt"));
+			input = new BufferedReader(new FileReader("./src/Pokemon.txt"));
 			
 			for(int i = 0; i < 12; i++){
 				s = input.readLine();
@@ -128,10 +128,10 @@ public class Battle extends Event{
 				j = 1-j;
 			}
 		} catch (FileNotFoundException e){
-			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
+			System.out.println("Game coundn't find Pokemon file, please make sure it is in the same directory as the script.");
 			return;
 		} catch (IOException e) {
-			System.out.println("Game coundn't read Pokemon file, please make sure it is in the smae directory as the script.");
+			System.out.println("Game coundn't read Pokemon file, please make sure it is in the same directory as the script.");
 			return;
 		}
 
