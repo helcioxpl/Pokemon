@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.Random;
+import java.lang.String;
 import java.util.Scanner;
 
 public class Mapa extends Player {
@@ -70,7 +71,8 @@ public class Mapa extends Player {
 				if(mapa.decide(3) == 2){
 					System.out.println("Achou pokemon");
 					Battle batalha = new Battle(Ps);
-					batalha.happen();
+					try{ batalha.happen(); }
+					catch (Event e){ return; }
 					return;
 				}
 			}
