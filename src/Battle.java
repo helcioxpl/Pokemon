@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import  java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
+import java.lang.String;
 
 public class Battle extends Event{
 	int i;
@@ -98,15 +99,39 @@ public class Battle extends Event{
 	public static void main (String[] args) {
 		Player[] Ps = {new Player("A"),new Player("B")};
 
-		Pokemon[] pokes;
-		String s;
+		/*Pokemon[] pokes;
+		String s;*/
 		try{
+			Pokemon[] pokes;
+			String s;
 			BufferedReader input = new BufferedReader(new FileReader("Pokemons.txt"));
+			for(int i = 0; i < 12; i++){
+				s = input.readLine();
+				pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+				for(int j = 0;j < 4; j++){
+					s = input.readLine();
+					pokes[i].addAttack(j,s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
+				}
+				input.readLine();
+			}
+			input.close();
+
+			Random r = new Random();
+			Pokemon pk;
+			int n;
+			for(int i = 12, j = 0; i > 0; i--){
+				n = r.nextInt(i);
+				pk = pokes[n];
+				pokes[n] = pokes[i];
+
+				Ps[j].addPokemon(pk);
+				j = 1-j;
+			}
 		} catch (FileNotFoundException e){
 			System.out.println("Game coundn't find Pokemon file, please make sure it is in the smae directory as the script.");
 			return;
 		}
-		for(int i = 0; i < 12; i++){
+		/*for(int i = 0; i < 12; i++){
 			s = input.readLine();
 			pokes[i] = new Pokemon(s.substring(4, s.length()-1), Integer.parseInt(s.substring(0,3)));
 			for(int j = 0;j < 4; j++){
@@ -127,7 +152,7 @@ public class Battle extends Event{
 
 			Ps[j].addPokemon(pk);
 			j = 1-j;
-		}
+		}*/
 
 		Battle b = new Battle(Ps);
 		try{
