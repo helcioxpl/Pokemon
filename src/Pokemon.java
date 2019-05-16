@@ -51,17 +51,17 @@ public class Pokemon {
 
 	public static void populate(Player[] Ps){
 		Pokemon[] pokes = new Pokemon[12];
-		String s;
+		String string;
 		BufferedReader input;
 		try{
 			input = new BufferedReader(new FileReader("./src/Pokemon.txt"));
 			
 			for(int i = 0; i < 12; i++){
-				s = input.readLine();
-				pokes[i] = new Pokemon(s.substring(4, s.length()), Integer.parseInt(s.substring(0,3)));
+				string = input.readLine();
+				pokes[i] = new Pokemon(string.substring(4, string.length()), Integer.parseInt(string.substring(0,3)));
 				for(int j = 0;j < 4; j++){
-					s = input.readLine();
-					pokes[i].addAttack(j,s.substring(4, s.length()), Integer.parseInt(s.substring(0,3)));
+					string = input.readLine();
+					pokes[i].addAttack(j,string.substring(4, string.length()), Integer.parseInt(string.substring(0,3)));
 				}
 				input.readLine();
 			}
